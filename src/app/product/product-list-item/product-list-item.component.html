@@ -1,0 +1,10 @@
+<div class="card border">
+  <div class="card-body">
+    <h5 class="card-title">{{product.catalogName}}</h5>
+    <p>Status: {{product.vehicleStatus}}</p>
+    <p>Price: USD {{product.price}}</p>
+
+    <a class="btn btn-outline-secondary btn-sm"  *ngIf="product.vehicleStatus === 'AVAILABLE'" (click)="reserve(product)">Reserve Now</a>
+    <a *ngIf="product.vehicleStatus !== 'AVAILABLE'" class="btn btn-outline-primary btn-sm">Already Reserved</a>
+  </div>
+</div>
