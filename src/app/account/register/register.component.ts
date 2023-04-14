@@ -14,6 +14,7 @@ import { ToastComponent } from '../../shared/components/toast/toast.component';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   submitted = false;
+  returnUrl='';
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +31,9 @@ export class RegisterComponent implements OnInit {
     return this.form.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl =  '/';
+  }
 
   buildForm(): void {
     this.form = this.fb.group(validationConfig, {
@@ -47,7 +50,14 @@ export class RegisterComponent implements OnInit {
     }
     this.service.register(this.form.value).subscribe(
       (response) => {
-        this.router.navigateByUrl('/');
+        var values = this.form.value;
+        let loging= {
+          username:values.username,
+          password:values.password
+        };
+        this.service.login(loging).subscribe((res)=>{
+          this.router.navigateByUrl('/');
+        })
       },
       (error) => {
         this.toast.setMessage(error.error, 'danger');
