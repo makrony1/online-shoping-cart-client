@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'product',
     loadChildren: () =>
       import('./product/product.module').then((module) => module.ProductModule),
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'payment',

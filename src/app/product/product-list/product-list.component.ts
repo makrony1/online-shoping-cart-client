@@ -22,12 +22,12 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
   }
-
+//{"id":1,"name":"Samsung Galaxy S22","price":1000.0}
   getProducts(): void {
     this.service.getProducts().subscribe(
       (data) => {
-        console.log(this.products)
-        this.products = data.content;
+        console.log(this.products);
+        this.products = data;
       },
       (error) => this.loggerService.logError('ProductListComponent', error.error),
       () => (this.isLoading = false)
