@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { CartItem } from '../../shared/models/cart';
+import { CartItem, ShippingAddress, CardInfo } from '../../shared/models/cart';
 import { ProductService } from '../../product/product.service';
 import { Router } from '@angular/router';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
@@ -15,6 +15,9 @@ import {ReservationItem} from "../../shared/models/reservation";
 export class CartComponent implements OnInit {
   reservations: [];
   reservationTotal: number;
+  isCheckoutDone:boolean= false;
+  shippingAddress: ShippingAddress;
+  cardInfo:CardInfo;
 
   constructor(
     private service: CartService,
@@ -25,6 +28,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
    this.load();
+   this.isCheckoutDone =false;
   }
 
   load(): void {
@@ -38,5 +42,24 @@ export class CartComponent implements OnInit {
 
   checkout() {
     alert("checkout")
+    this.isCheckoutDone = true;
+    this.shippingAddress= {
+      Address:"",
+      City:'',
+      Country:'USA',
+      State:'',
+      Zip:0
+    };
+    this.cardInfo ={
+      CardNumber:0,
+      CardType: "",
+      CVV:0,
+      Expire:'',
+      NameOnTheCard:''
+    };
+  }
+  placeOrder(){
+    console.log(this.shippingAddress);
+    console.log(this.cardInfo);
   }
 }

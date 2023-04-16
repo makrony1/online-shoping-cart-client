@@ -9,3 +9,20 @@ export interface CartItem {
 export interface CheckOutResponse {
   totalPrice: string;
 }
+
+export interface ShippingAddress{
+  Address: string;
+  City:String;
+  State:string;
+  Zip:number;
+  Country:string
+}
+
+export interface CardInfo{
+  CardType:string;
+  CardNumber:number;
+  Expire:string;
+  CVV:number
+  NameOnTheCard: string
+  
+}

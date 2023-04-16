@@ -21,6 +21,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./account/account.module').then((module) => module.AccountModule),
   },
+  {
+    path: 'vendor',
+    loadChildren: () =>
+      import('./VendorAdmin/VendorAdmin.module').then((module) => module.VendorAdminModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./SysAdmin/sysAdmin.module').then((module) => module.SysAdminModule),
+  },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
 ];
 

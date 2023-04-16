@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 cart">
-      
+
       <table *ngIf="!reservations.length<=0">
         <tr>
           <th>Product Name</th>
@@ -20,9 +20,9 @@
           <td>{{item.productPrice}}</td>
           <td>{{item.quantity}}</td>
           <td>{{item.quantity * item.productPrice}}</td>
-          <td>
+          <td *ngIf="!isCheckoutDone">
             <span>
-              <button (click)="remove(item)"  class="btn btn-warning" type="button">
+              <button (click)="remove(item)" class="btn btn-warning" type="button">
                 Remove
               </button>
             </span>
@@ -30,13 +30,81 @@
         </tr>
       </table>
     </div>
-    
+
+  </div>
+  <div class="row" *ngIf="!isCheckoutDone">
+    <div class="col-md-12 text-right mt-4 mb-3">
+      <button (click)="checkout()" class="btn btn-primary" type="button">Checkout</button>
+    </div>
+  </div>
+</div>
+<div class="container mt-2" *ngIf="isCheckoutDone">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card-header">
+        <h3>Payment Info</h3>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1"> Select Card type</label>
+        <select class="form-control" [(ngModel)]="cardInfo.CardType">
+          <option value="Visa">Visa</option>
+          <option value="Master">Master</option>
+        </select>
+      </div>
+      <div class="form-group">
+        
+        <label>Card number</label>
+        <input class="form-control" [(ngModel)]="cardInfo.CardNumber" type="number" placeholder="Card number" />
+      </div>
+      <div class="form-group">
+        <label>Name on the Card</label>
+        <input class="form-control" [(ngModel)]="cardInfo.NameOnTheCard" type="text" placeholder="Name on the card" />
+      </div>
+      <div class="form-group">
+        <label>CVV</label>
+        <input class="form-control" [(ngModel)]="cardInfo.CVV" type="number" placeholder="Security number (CVV)" />
+      </div>
+      <div class="form-group">
+        <label>Expire (MM/YY)</label>
+        <input class="form-control" [(ngModel)]="cardInfo.Expire" type="number" placeholder="MM/YY" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-header">
+        <h3>Shipping Adderss</h3>
+        
+      </div>
+      <div class="form-group">
+        <label>Address Line</label>
+        <input class="form-control" [(ngModel)]="shippingAddress.Address" type="text" placeholder="Address line " />
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input class="form-control" [(ngModel)]="shippingAddress.City" type="text" placeholder="City" />
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <input class="form-control" [(ngModel)]="shippingAddress.State" type="text" placeholder="Sate name" />
+      </div>
+      <div class="form-group">
+        <label>Zip code</label>
+        <input class="form-control" [(ngModel)]="shippingAddress.Zip" type="number" placeholder="Zip code" />
+      </div>
+
+      <div class="form-group">
+        <label>Country</label>
+        <input class="form-control" type="text" placeholder="USA" value="USA" readonly />
+      </div>
+
+    </div>
   </div>
   <div class="row">
-    <div class="col-md-12 text-right mt-4">
-      <button  (click)="checkout()"  class="btn btn-primary" type="button">Checkout</button>
-      </div>
-      </div>
+    <div class="col-md-12 text-right mt-4 mb-3">
+      <button (click)="placeOrder()" class="btn btn-primary" type="button">Place Order</button>
+    </div>
+  </div>
 </div>
+
 
 <app-toast [message]="toast.message"></app-toast>

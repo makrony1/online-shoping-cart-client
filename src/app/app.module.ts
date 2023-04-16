@@ -10,7 +10,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
