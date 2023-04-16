@@ -18,7 +18,9 @@ export class ProductListItemComponent implements OnInit {
               private router: Router,
               private service: ProductService, public toast: ToastComponent) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   reserve(product: Product) {
     const token = localStorage.getItem('token');
@@ -50,5 +52,15 @@ export class ProductListItemComponent implements OnInit {
     });
 
     // this.router.navigate(['/payment']);
+  }
+
+  getItem(product:Product):void{
+    // this.service.getProductById(product.id).subscribe(
+    //   (data) =>{
+    //     console.log(this.product);
+    //     this.product=data;
+    //   }
+    // );
+    this.router.navigate(['product/',product.id]);
   }
 }

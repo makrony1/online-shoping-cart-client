@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  productUrl: 'https://spring-boot-new.uc.r.appspot.com/products',
   catalogsUrl: 'http://localhost:8081/catalogs',
-  accountsUrl: 'http://localhost:8080/accounts',
+  accountsUrl: 'https://spring-boot-new.uc.r.appspot.com/accounts',
   notificationsUrl: 'http://localhost:8082/notifications',
   reservationsUrl: 'http://localhost:8086/reservations',
   production: false
