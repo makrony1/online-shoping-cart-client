@@ -4,10 +4,10 @@ threadsafe: yes
 
 handlers:
   - url: /
-   static_files: dist/index.html
-   upload: dist/index.html
+    static_files: dist/frontend-service/index.html
+    upload: dist/frontend-service/index.html
   - url: /
-   static_dir: dist/frontend-service
+    static_dir: dist/frontend-service
 
 skip_files:
   - e2e/
@@ -16,5 +16,6 @@ skip_files:
   - ^(.*/)?\..*$
   - ^(.*/)?.*\.json$
   - ^(.*/)?.*\.md$
-  - ^(.*/)?.*\.yamk$
+  - ^(.*/)?.*\.yaml$
+  - ^LICENSE
 
