@@ -8,6 +8,7 @@ export const environment = {
   accountsUrl: 'https://spring-boot-new.uc.r.appspot.com/accounts',
   notificationsUrl: 'http://localhost:8082/notifications',
   reservationsUrl: 'http://localhost:8086/reservations',
+  baseUrl: 'https://spring-boot-new.uc.r.appspot.com',//'https://spring-boot-new.uc.r.appspot.com/',
   production: false
 };
 

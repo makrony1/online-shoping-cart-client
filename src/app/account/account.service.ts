@@ -21,24 +21,27 @@ export class AccountService {
   ) {}
 
   register(values: any): Observable<void> {
-    return this.http.post(`${environment.accountsUrl}/register`, values).pipe(
+    console.log("from register");
+    console.log(environment.baseUrl);
+    return this.http.post(`${environment.baseUrl}/api/auth/signup`, values).pipe(
       map((user: CurrentUser) => {
         if (user) {
-          localStorage.setItem('token', user.accessToken);
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          //localStorage.setItem('token', user.accessToken);
+          //localStorage.setItem('user', JSON.stringify(user));
+          //this.currentUserSource.next(user);
+          console.log('Register sucess');
         }
       })
     );
   }
 
   login(values: any): Observable<any> {
-    return this.http.post(`${environment.accountsUrl}/login`, values).pipe(
+    return this.http.post(`${environment.baseUrl}/api/auth/signin`, values).pipe(
       map((user: any) => {
         if (user) {
           localStorage.setItem('token', user.accessToken);
           localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          //this.currentUserSource.next(user);
         }
       })
     );
