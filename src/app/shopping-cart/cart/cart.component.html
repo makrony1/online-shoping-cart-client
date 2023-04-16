@@ -1,40 +1,42 @@
 <div *ngIf="reservations" class="container">
   <div class="card-header">
-    <h3>Pending reservation</h3>
+    <h3>Pending cart items</h3>
   </div>
   <div class="card-text" *ngIf="reservations.length<=0">
-    <h2 class="m-4">Your reservation is empty</h2>
+    <h2 class="m-4">Your cart is empty</h2>
   </div>
   <div class="row">
     <div class="col-md-12 cart">
-      <table>
+      
+      <table *ngIf="!reservations.length<=0">
         <tr>
-          <th>Vehicle Name</th>
-          <th>Variant Color</th>
-          <th>Plate Number</th>
-          <th>Brand</th>
-          <th>Price(USD)</th>
-          <th>Reservation Status</th>
-          <th>Action</th>
+          <th>Product Name</th>
+          <th>Unit Price(USD)</th>
+          <th>Quantity</th>
+          <th>Total</th>
         </tr>
         <tr *ngFor="let item of reservations">
-          <td>{{item.vehicle.vehicleType}}</td>
-          <td>{{item.vehicle.color}}</td>
-          <td>{{item.vehicle.plateNumber}}</td>
-          <td>{{item.vehicle.brand}}</td>
-          <td>{{item.vehicle.price}}</td>
-          <td>{{item.reservationStatus}}</td>
+          <td>{{item.productName}}</td>
+          <td>{{item.productPrice}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.quantity * item.productPrice}}</td>
           <td>
             <span>
-              <button (click)="pay(item)" *ngIf="item.reservationStatus === 'PENDING'" class="btn btn-warning" type="button">
-                Pay <i class="fa fa-cc-stripe"></i>
+              <button (click)="remove(item)"  class="btn btn-warning" type="button">
+                Remove
               </button>
             </span>
           </td>
         </tr>
       </table>
     </div>
+    
   </div>
+  <div class="row">
+    <div class="col-md-12 text-right mt-4">
+      <button  (click)="checkout()"  class="btn btn-primary" type="button">Checkout</button>
+      </div>
+      </div>
 </div>
 
 <app-toast [message]="toast.message"></app-toast>

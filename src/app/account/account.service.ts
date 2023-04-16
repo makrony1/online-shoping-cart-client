@@ -41,7 +41,7 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.accessToken);
           localStorage.setItem('user', JSON.stringify(user));
-          //this.currentUserSource.next(user);
+          this.currentUserSource.next(user);
         }
       })
     );

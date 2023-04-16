@@ -60,52 +60,20 @@ export class ProductListItemDetailsComponent implements OnInit {
   }
 
   handleAddToCart(product: Product): void {
-    // const cartItem: CartItem = {
-    //   id: Math.floor(Math.random() * 1000000),
-    //   productId: product.id,
-    //   productPrice: product.price,
-    //   productName: product.catalogName,
-    //   variantColor: product.color,
-    //   variantSize: this.selectedVariantSize,
-    //   quantity: this.quantity,
-    //   numberOfAvailableProduct: 1,
-    // };
-    //
-    // this.cartService.addProductToCart(cartItem);
-    // this.toast.setMessage(
-    //   `Products is added to cart. Please go to cart for checkout !`,
-    //   'warning',
-    //   3000
-    // );
-
-    const token = localStorage.getItem('token');
-    if(!token) {
-      this.accountService.logout();
-      this.toast.setMessage(`User is logged out by system`, 'danger');
-    }
-    const user = localStorage.getItem('user');
-    if(!user){
-      this.toast.setMessage(`User is logged out by system!`, 'danger');
-    }
-    const parseedUser = JSON.parse(user);
-    const body = {
-      account: {
-        email: parseedUser.email,
-        id: parseedUser.id
-      },
-      "duration": {
-        "rentalDate": "10-10-2022",
-        "returnDate": "11-11-2022"
-      },
-      "paymentType": "BANK"
-    }
-
-    this.service.reserveProduct(token, body, product.id).subscribe(data => {
-      console.log("data ==", data);
-      this.toast.setMessage(`Car is reserved for 24 hours please make the payment!`, 'success');
-
-    });
-
-    this.router.navigate(['/payment']);
+    console.log(product)
+    const cartItem: CartItem = {
+      id: Math.floor(Math.random() * 1000000),
+      productId: product.id,
+      productPrice: product.price,
+      quantity: this.quantity,
+      productName: product.name
+    };
+    
+    this.service.addToCart(cartItem);
+    this.toast.setMessage(
+      `Products is added to cart. Please go to cart for checkout !`,
+      'warning',
+      3000
+    );
   }
 }

@@ -13,7 +13,7 @@ import {ReservationItem} from "../../shared/models/reservation";
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  reservations: ReservationItem[];
+  reservations: [];
   reservationTotal: number;
 
   constructor(
@@ -28,25 +28,15 @@ export class CartComponent implements OnInit {
   }
 
   load(): void {
-    const user = JSON.parse(localStorage.getItem('user'))
-    this.service.getReservation(user.id).subscribe(data => {
-      console.log("reservation data", data);
-      this.reservations = data;
-    });
+    this.reservations = this.service.getCartItem();
   }
 
-  pay(item: ReservationItem) {
-    const user = JSON.parse(localStorage.getItem('user'))
+  remove(item: CartItem) {
+    this.service.removeCartItem(item);
+    this.load();
+  }
 
-    this.service.payReservation(item.id, user.id).subscribe(data => {
-      this.toast.setMessage(data.message, 'success');
-      console.log(data);
-      this.load();
-
-    }, error => {
-      this.toast.setMessage(error.text, 'success');
-      console.error(error)
-      this.load();
-    })
+  checkout() {
+    alert("checkout")
   }
 }

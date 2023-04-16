@@ -9,6 +9,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class CartService {
+  cart_item_key: "cart_item_local";
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +22,27 @@ export class CartService {
       userId: userId,
       reservationId: reservationId
     });
+  }
+  getCartItem(): any{
+    let ci = localStorage.getItem(this.cart_item_key);
+    
+    let r = JSON.parse(ci);
+    return r==null? []: r;
+  }
+
+  removeCartItem(item: CartItem): any{
+    let ci = localStorage.getItem(this.cart_item_key);
+    let result = [];
+    result = JSON.parse(ci);
+
+    if(result!= null){
+      let index = result.findIndex(r=>r.id==item.id);
+      if(index>-1){
+        result.splice(index,1);
+        localStorage.setItem(this.cart_item_key, JSON.stringify(result))
+
+      }
+    }
   }
 
 }

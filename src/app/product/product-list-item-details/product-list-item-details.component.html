@@ -3,30 +3,23 @@
     <div class="col-md-6 pull-left">
       <div class="mb-lg-5">
         <h2><strong>{{product.name}}</strong></h2>
+        <div>
+          <h5><strong class="mr-2">Price:</strong> <span>$ {{product.price}}</span></h5>
+        </div>
       </div>
-      <div>
-        <h5><strong class="mr-2">Status:</strong> <span>{{product.vehicleStatus}}</span></h5>
-      </div>
-      <div>
-        <h5><strong class="mr-2">Price:</strong> <span>$ {{product.price}}</span></h5>
-      </div>
-      <div>
-        <h5><strong class="mr-2">Year:</strong> <span>{{product.yearOfManufacture}}</span></h5>
-      </div>
+      
       <img width="100%" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
     </div>
     <div class=" col-md-6 pull-right">
+      
       <div class="mt-4">
-        <h4>Product Color: <span>{{product.color}}</span></h4>
-      </div>
-
-      <div class="mt-4">
-
-      </div>
-      <div class="mt-4">
-        <button (click)="handleAddToCart(product)" *ngIf="product.vehicleStatus === 'AVAILABLE'"   class="btn btn-success">Reserve
-        </button>
-        <button *ngIf="product.vehicleStatus !== 'AVAILABLE'"  class="btn btn-success">Already Reserved
+        <div>
+          <label>Quantity: </label>
+          <input type="number" placeholder="Quantity..." [(ngModel)]="quantity"/>
+        </div>
+        
+        <br/>
+        <button (click)="handleAddToCart(product)" class="btn btn-success">Add to Cart
         </button>
       </div>
     </div>
