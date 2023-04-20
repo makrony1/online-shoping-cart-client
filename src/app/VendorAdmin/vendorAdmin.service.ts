@@ -24,4 +24,8 @@ export class VendorAdminService {
   getCategories(): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/categories`);
   }
+
+  createProducts(data): Observable<any>{
+    return this.http.post<any>(`${environment.baseUrl}/products`,data );
+  }
 }

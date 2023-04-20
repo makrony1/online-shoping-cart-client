@@ -78,10 +78,28 @@ this.isModalOpen=true;
   }
 
   saveOrUpdateProducts():void{
-    if(this.modalProduct.id> 0){
+    console.log(this.modalProduct);
+    if(this.modalProduct.id > 0){
       alert("Update products");
     }else{
-      alert("new")
+      let new_pro = {
+        "active": true,
+        "actualPrice": this.modalProduct.actualPrice,
+        "category": {
+          "id": this.modalProduct.categoryId
+          
+        },
+        "name": this.modalProduct.name,
+        "quantity": this.modalProduct.quantity,
+        "sellingPrice": this.modalProduct.sellingPrice
+      }
+
+      this.service.createProducts(new_pro).subscribe(data=>{
+        this.products.push(data);
+      },error=>{
+        console.log("Failed to login");
+        console.log(error);
+      })
     }
 
   }

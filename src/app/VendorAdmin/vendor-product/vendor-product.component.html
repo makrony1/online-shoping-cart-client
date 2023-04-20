@@ -61,7 +61,7 @@
           <img width="200px" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
           <div class="form-group">
             <label>Category:</label>
-            <select class="form-control"  [(ngModel)]="modalProduct.id">
+            <select class="form-control"  [(ngModel)]="modalProduct.categoryId">
               <option *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
             </select>
           </div>
