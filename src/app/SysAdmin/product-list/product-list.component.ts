@@ -22,10 +22,21 @@ export class ProductListComponent implements OnInit {
   getProducts(): void{
     this.service.getProducts().subscribe(
       (data)=> {
-        console.log(this.products);
         this.products = data;
       }
     );
+  }
+
+  approve(item):void{
+    item.isActive=true;
+
+
+  }
+
+  decline(item):void{
+    item.isActive=false;
+    
+
   }
 
 }

@@ -26,6 +26,8 @@ export class VendorProductComponent implements OnInit {
       sellingPrice:0,
       quantity:0,
       categoryId:0,
+      isActive:false,
+
       categoryName:""
 
     }
@@ -69,7 +71,8 @@ this.isModalOpen=true;
       sellingPrice:0,
       quantity:0,
       categoryId:0,
-      categoryName:''
+      categoryName:'',
+      isActive:false
     
 
     }

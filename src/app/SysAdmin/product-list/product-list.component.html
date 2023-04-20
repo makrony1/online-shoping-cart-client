@@ -8,26 +8,43 @@
             </ul>
         </div>
 
-        <div class="product-list">
+        <div class="col-md-8 product-list">
             <h4>Product List</h4>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Vendor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let product of products" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
-                        <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.vendor_id}}</td>
-                        <button type="button" class="btn btn-success ml-2">Approve</button>
-                        <button type="button" class="btn btn-danger ml-2">Decline</button>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="height: 75vh; overflow-y: auto;">
+                <table class="table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th>P Image</th>
+                            <th>Product Name</th>
+                            <th>Unit Price(USD)</th>
+                            <th>Actual Price(USD)</th>
+                            <th>Quantity</th>
+                          </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
+                            <td>
+                                <img width="150px" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
+                              </td>
+                              <td>{{product.name}}</td>
+                              <td>{{product.sellingPrice}}</td>
+                              <td>{{product.actualPrice}}</td>
+                              <td>{{product.quantity}}</td>
+                              <td>
+                                <span>
+                                    <button type="button" *ngIf="!product.isActive" (click)="approve(product)" class="btn btn-success ml-2">Approve</button>
+                            <button type="button" *ngIf="product.isActive" (click)="decline(product)" class="btn btn-danger ml-2">Decline</button>
+                                </span>
+                                
+
+                              </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
         </div>
     </div>
 </div>
