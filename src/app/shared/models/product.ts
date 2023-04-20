@@ -1,13 +1,7 @@
 export interface Product {
-  id: string;
+  id: number;
   name: string;
-  catalogName: string;
-  plateNumber: number;
-  brand: string;
-  model: string;
-  color: string;
-  vehicleType: string;
-  yearOfManufacture: string;
-  vehicleStatus: string;
   price: number;
+  actualPrice:number;
+  quantity:number;
 }

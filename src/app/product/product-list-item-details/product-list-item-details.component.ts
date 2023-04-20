@@ -40,12 +40,7 @@ export class ProductListItemDetailsComponent implements OnInit {
     this.service.getProductById(id).subscribe(
       (data) => {
         this.product = data;
-        if (this.product.vehicleStatus === 'RESERVED') {
-          this.toast.setMessage(
-            `Currently this  product is not available`,
-            'info'
-          );
-        }
+        
       },
       (error) => {
         this.loggerService.logError(

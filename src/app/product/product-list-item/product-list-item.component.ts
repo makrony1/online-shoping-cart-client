@@ -44,14 +44,6 @@ export class ProductListItemComponent implements OnInit {
       },
       "paymentType": "BANK"
     }
-
-    this.service.reserveProduct(token, body, product.id).subscribe(data => {
-      console.log("data ==", data);
-      this.toast.setMessage(`Car is reserved for 24 hours please make the payment!`, 'success');
-
-    });
-
-    // this.router.navigate(['/payment']);
   }
 
   getItem(product:Product):void{

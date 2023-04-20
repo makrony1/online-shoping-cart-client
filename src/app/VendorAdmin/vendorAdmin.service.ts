@@ -10,11 +10,14 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SysAdminService {
+export class VendorAdminService {
 
   constructor(
     private http: HttpClient,
     private messengerService: MessengerService,
     private router: Router
   ) {}
+  getVendorProducts(): Observable<any> {
+    return this.http.get<any>(`${environment.productUrl}`);
+  }
 }
