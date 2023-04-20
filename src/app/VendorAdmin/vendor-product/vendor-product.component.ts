@@ -96,6 +96,7 @@ this.isModalOpen=true;
 
       this.service.createProducts(new_pro).subscribe(data=>{
         this.products.push(data);
+        this.isModalOpen = false;
       },error=>{
         console.log("Failed to login");
         console.log(error);
