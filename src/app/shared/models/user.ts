@@ -12,4 +12,5 @@ export interface CurrentUser {
   username: string;
   email: string;
   accessToken: string;
+  roles: string[];
 }
