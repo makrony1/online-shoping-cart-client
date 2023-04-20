@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
   getProducts(): void {
     this.service.getProducts().subscribe(
       (data) => {
-        console.log(this.products);
+        console.log(data);
         this.products = data;
       },
       (error) => this.loggerService.logError('ProductListComponent', error.error),

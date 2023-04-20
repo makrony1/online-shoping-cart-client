@@ -20,4 +20,8 @@ export class VendorAdminService {
   getVendorProducts(): Observable<any> {
     return this.http.get<any>(`${environment.productUrl}`);
   }
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/categories`);
+  }
 }

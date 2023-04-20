@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/product';
+import { Category, Product } from 'src/app/shared/models/product';
 import { VendorAdminService } from '../vendorAdmin.service';
 
 @Component({
@@ -13,19 +13,30 @@ export class VendorProductComponent implements OnInit {
   products: Product[];
   isModalOpen=false;
   modalProduct: Product;
+  categories:Category[];
 
   ngOnInit(): void {
     this.loadVendorProducts();
     console.log("here is vendor products");
+    this.loadCategories();
     this.modalProduct={
       actualPrice:0,
       id:0,
       name:'',
-      price:0,
-      quantity:0
+      sellingPrice:0,
+      quantity:0,
+      categoryId:0,
+      categoryName:""
+
     }
   }
 
+  loadCategories():void{
+    this.service.getCategories().subscribe(data=>{
+      this.categories=data;
+      console.log(this.categories);
+    })
+  }
   loadVendorProducts():void{
     this.service.getVendorProducts().subscribe(
       (data) => {
@@ -55,8 +66,11 @@ this.isModalOpen=true;
       actualPrice:0,
       id:0,
       name:'',
-      price:0,
-      quantity:0
+      sellingPrice:0,
+      quantity:0,
+      categoryId:0,
+      categoryName:''
+    
 
     }
     this.isModalOpen=true;

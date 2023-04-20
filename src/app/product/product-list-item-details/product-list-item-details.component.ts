@@ -59,7 +59,7 @@ export class ProductListItemDetailsComponent implements OnInit {
     const cartItem: CartItem = {
       id: Math.floor(Math.random() * 1000000),
       productId: product.id,
-      productPrice: product.price,
+      productPrice: product.sellingPrice,
       quantity: this.quantity,
       productName: product.name
     };

@@ -27,7 +27,7 @@
                     <img width="80%" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
                   </td>
                   <td>{{item.name}}</td>
-                  <td>{{item.price}}</td>
+                  <td>{{item.sellingPrice}}</td>
                   <td>{{item.actualPrice}}</td>
                   <td>{{item.quantity}}</td>
                   <td *ngIf="true">
@@ -57,15 +57,21 @@
         </div>
         
         <!-- Modal body -->
-        <div class="modal-body">
+        <div class="modal-body" style="height: 60vh; overflow-y: auto;">
           <img width="200px" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
+          <div class="form-group">
+            <label>Category:</label>
+            <select class="form-control"  [(ngModel)]="modalProduct.id">
+              <option *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+          </div>
           <div class="form-group">
             <label>Product name:</label>
             <input type="text" class="form-control" required [(ngModel)]="modalProduct.name" placeholder="Product name">
           </div>
           <div class="form-group">
             <label>Price:</label>
-            <input type="number" class="form-control" required [(ngModel)]="modalProduct.price" placeholder="Selling price">
+            <input type="number" class="form-control" required [(ngModel)]="modalProduct.sellingPrice" placeholder="Selling price">
           </div>
           <div class="form-group">
             <label>Actual Price:</label>
