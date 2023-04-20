@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   returnUrl: string;
+  isLoading=false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -42,18 +44,22 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.submitted = true;
+    this.isLoading=true;
 
     // stop here if form is invalid
     if (this.form.invalid) {
+      this.isLoading=false;
       return;
     }
 
     this.service.login(this.form.value).subscribe(
       () => {
+        this.isLoading=false;
         this.router.navigateByUrl(this.returnUrl);
       },
       (error) => {
         this.toast.setMessage(`${error.error}`, 'danger');
+        this.isLoading=false;
         this.logger.logError('LoginComponent', error.error);
       }
     );

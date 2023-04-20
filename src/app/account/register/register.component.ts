@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   returnUrl='';
-
+  isLoading=false;
   constructor(
     private fb: FormBuilder,
     private service: AccountService,
@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void {
     this.submitted = true;
+    this.isLoading=true;
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -50,6 +51,8 @@ export class RegisterComponent implements OnInit {
     }
     this.service.register(this.form.value).subscribe(
       (response) => {
+        this.isLoading=false;
+
         var values = this.form.value;
         let loging= {
           username:values.username,
@@ -60,6 +63,8 @@ export class RegisterComponent implements OnInit {
         })
       },
       (error) => {
+        this.isLoading=false;
+
         this.toast.setMessage(error.error, 'danger');
         this.loggerService.logError('RegisterComponent', error.error);
       }
