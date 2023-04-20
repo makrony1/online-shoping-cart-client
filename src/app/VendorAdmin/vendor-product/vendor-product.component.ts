@@ -57,9 +57,9 @@ this.isModalOpen=true;
     this.isModalOpen=false;
       }
   edit(item):void{
-    this.modalProduct=item;
+    let items =JSON.stringify(item);
+    this.modalProduct=JSON.parse(items);
     this.isModalOpen=true;
-    console.log(item);
   }
   createProducts():void{
     this.modalProduct={
@@ -78,9 +78,26 @@ this.isModalOpen=true;
   }
 
   saveOrUpdateProducts():void{
-    console.log(this.modalProduct);
     if(this.modalProduct.id > 0){
-      alert("Update products");
+      let update_pro = {
+        "active": true,
+        "actualPrice": this.modalProduct.actualPrice,
+        "category": {
+          "id": this.modalProduct.categoryId
+        },
+        "id": this.modalProduct.id,
+        "name": this.modalProduct.name,
+        "quantity": this.modalProduct.quantity,
+        "sellingPrice": this.modalProduct.sellingPrice
+      }
+      this.service.updateProducts(update_pro).subscribe(data=>{
+        let old_obj = this.products.find(x=>x.id==data.id);
+        let x = this.products.indexOf(old_obj)
+        if(x>-1){
+          this.products[x] = data;
+        }
+        this.isModalOpen = false;
+      })
     }else{
       let new_pro = {
         "active": true,

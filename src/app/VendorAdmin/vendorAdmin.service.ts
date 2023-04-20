@@ -28,4 +28,8 @@ export class VendorAdminService {
   createProducts(data): Observable<any>{
     return this.http.post<any>(`${environment.baseUrl}/products`,data );
   }
+
+  updateProducts(data): Observable<any>{
+    return this.http.put<any>(`${environment.baseUrl}/products/${data.id}`,data );
+  }
 }
