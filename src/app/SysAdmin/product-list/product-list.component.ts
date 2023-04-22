@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void{
-    this.service.getProducts().subscribe(
+    this.service.getAllProducts().subscribe(
       (data)=> {
         this.products = data;
       }
@@ -28,15 +28,19 @@ export class ProductListComponent implements OnInit {
   }
 
   approve(item):void{
-    item.isActive=true;
+    
+    this.service.activateProduct(item.id).subscribe(data=>{
+      item.isActive=true;
+    })
 
 
   }
 
   decline(item):void{
-    item.isActive=false;
-    
 
+    this.service.deactivateProduct(item.id).subscribe(data=>{
+      item.isActive=false;
+    })
   }
 
 }

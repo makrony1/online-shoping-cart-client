@@ -19,17 +19,16 @@
                     <tr>
                         <th scope="col">User Name</th>
                         <th scope="col">Email</th>
+                        <th>Roles</th>
                     </tr>
                 </thead>
-                <!-- <tbody>
-                    <tr *ngFor="let product of products" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
-                        <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.vendor_id}}</td>
-                        <button type="button" class="btn btn-success ml-2">Approve</button>
-                        <button type="button" class="btn btn-danger ml-2">Decline</button>
+                <tbody>
+                    <tr *ngFor="let u of users" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
+                        <td>{{u.username}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{getroles(u)}}</td>
                     </tr>
-                </tbody> -->
+                </tbody>
             </table>
         </div>
     </div>

@@ -87,4 +87,9 @@ export class AccountService {
     //   })
     // );
   }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/users`);
+  }
+
 }

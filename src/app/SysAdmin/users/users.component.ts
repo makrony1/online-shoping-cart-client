@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/user';
 })
 export class UsersComponent implements OnInit {
 
-  users: User[];
+  users: [];
   username: string;
   email: string;
   usertype: string
@@ -20,12 +20,20 @@ export class UsersComponent implements OnInit {
     public toast: ToastComponent,) { }
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
   getUsers(): void {
+    this.service.getAllUsers().subscribe(data=>{
+      console.log(data);
+      this.users=data;
+    });
 
   }
 
+  getroles(u:any):String{
+    return u.roles.map(x=>x.name).join(", ");
+  }
   createUser(): void {
 
     this.isModalOpen = true;
@@ -57,6 +65,7 @@ export class UsersComponent implements OnInit {
     this.username = '';
     this.email = '';
     this.usertype = '';
+    this.getUsers();
 
     }, er=>{
       console.log(er.error.message);
