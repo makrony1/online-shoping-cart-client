@@ -14,3 +14,10 @@ export interface CurrentUser {
   accessToken: string;
   roles: string[];
 }
+
+export interface VendorUser {
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
+}

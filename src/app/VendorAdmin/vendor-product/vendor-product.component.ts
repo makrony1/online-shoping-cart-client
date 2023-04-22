@@ -50,19 +50,21 @@ export class VendorProductComponent implements OnInit {
   }
   openmodal():void{
     
-this.isModalOpen=true;
+    this.isModalOpen=true;
   }
 
 
   closemodal():void{
     
     this.isModalOpen=false;
-      }
+  }
+
   edit(item):void{
     let items =JSON.stringify(item);
     this.modalProduct=JSON.parse(items);
     this.isModalOpen=true;
   }
+  
   createProducts():void{
     this.modalProduct={
       actualPrice:0,

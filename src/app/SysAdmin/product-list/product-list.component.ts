@@ -35,8 +35,6 @@ export class ProductListComponent implements OnInit {
 
   decline(item):void{
     item.isActive=false;
-    
-
   }
 
 }
