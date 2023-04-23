@@ -71,9 +71,8 @@ export class VendorListComponent implements OnInit {
       });
     } else {
       let new_pro = {
-        "active": true,
         //"id": this.modalCategory.id,
-        "name": this.modalVendor.name,
+        "vendorname": this.modalVendor.name,
         "address": this.modalVendor.address,
         "phone": this.modalVendor.phone
       }
