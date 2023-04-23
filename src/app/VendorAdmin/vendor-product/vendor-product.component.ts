@@ -58,32 +58,7 @@ export class VendorProductComponent implements OnInit {
     
     this.isModalOpen=false;
   }
-
-  edit(item):void{
-    let items =JSON.stringify(item);
-    this.modalProduct=JSON.parse(items);
-    this.isModalOpen=true;
-  }
   
-  createProducts():void{
-    this.modalProduct={
-      actualPrice:0,
-      id:0,
-      name:'',
-      sellingPrice:0,
-      quantity:0,
-      categoryId:0,
-      categoryName:'',
-      isActive:false
-	}
-	this.isModalOpen = true;
-	}
-
-
-  closemodal(): void {
-
-    this.isModalOpen = false;
-  }
   edit(item): void {
     let items = JSON.stringify(item);
     this.modalProduct = JSON.parse(items);
