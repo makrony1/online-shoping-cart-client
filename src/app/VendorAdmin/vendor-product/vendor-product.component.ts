@@ -11,38 +11,38 @@ export class VendorProductComponent implements OnInit {
 
   constructor(private service: VendorAdminService) { }
   products: Product[];
-  isModalOpen=false;
+  isModalOpen = false;
   modalProduct: Product;
-  categories:Category[];
+  categories: Category[];
 
   ngOnInit(): void {
     this.loadVendorProducts();
     console.log("here is vendor products");
     this.loadCategories();
-    this.modalProduct={
-      actualPrice:0,
-      id:0,
-      name:'',
-      sellingPrice:0,
-      quantity:0,
-      categoryId:0,
-      isActive:false,
+    this.modalProduct = {
+      actualPrice: 0,
+      id: 0,
+      name: '',
+      sellingPrice: 0,
+      quantity: 0,
+      categoryId: 0,
+      isActive: false,
 
-      categoryName:""
+      categoryName: ""
 
     }
   }
 
-  loadCategories():void{
-    this.service.getCategories().subscribe(data=>{
-      this.categories=data;
+  loadCategories(): void {
+    this.service.getCategories().subscribe(data => {
+      this.categories = data;
       console.log(this.categories);
     })
   }
-  loadVendorProducts():void{
+  loadVendorProducts(): void {
     this.service.getVendorProducts().subscribe(
       (data) => {
-        
+
         this.products = data;
         console.log(this.products);
       }
@@ -75,15 +75,38 @@ export class VendorProductComponent implements OnInit {
       categoryId:0,
       categoryName:'',
       isActive:false
-    
+	}
+	this.isModalOpen = true;
+	}
+
+
+  closemodal(): void {
+
+    this.isModalOpen = false;
+  }
+  edit(item): void {
+    let items = JSON.stringify(item);
+    this.modalProduct = JSON.parse(items);
+    this.isModalOpen = true;
+  }
+  createProducts(): void {
+    this.modalProduct = {
+      actualPrice: 0,
+      id: 0,
+      name: '',
+      sellingPrice: 0,
+      quantity: 0,
+      categoryId: 0,
+      categoryName: '',
+      isActive: false
 
     }
-    this.isModalOpen=true;
+    this.isModalOpen = true;
 
   }
 
-  saveOrUpdateProducts():void{
-    if(this.modalProduct.id > 0){
+  saveOrUpdateProducts(): void {
+    if (this.modalProduct.id > 0) {
       let update_pro = {
         "active": true,
         "actualPrice": this.modalProduct.actualPrice,
@@ -95,31 +118,31 @@ export class VendorProductComponent implements OnInit {
         "quantity": this.modalProduct.quantity,
         "sellingPrice": this.modalProduct.sellingPrice
       }
-      this.service.updateProducts(update_pro).subscribe(data=>{
-        let old_obj = this.products.find(x=>x.id==data.id);
+      this.service.updateProducts(update_pro).subscribe(data => {
+        let old_obj = this.products.find(x => x.id == data.id);
         let x = this.products.indexOf(old_obj)
-        if(x>-1){
+        if (x > -1) {
           this.products[x] = data;
         }
         this.isModalOpen = false;
       })
-    }else{
+    } else {
       let new_pro = {
         "active": true,
         "actualPrice": this.modalProduct.actualPrice,
         "category": {
           "id": this.modalProduct.categoryId
-          
+
         },
         "name": this.modalProduct.name,
         "quantity": this.modalProduct.quantity,
         "sellingPrice": this.modalProduct.sellingPrice
       }
 
-      this.service.createProducts(new_pro).subscribe(data=>{
+      this.service.createProducts(new_pro).subscribe(data => {
         this.products.push(data);
         this.isModalOpen = false;
-      },error=>{
+      }, error => {
         console.log("Failed to login");
         console.log(error);
       })
