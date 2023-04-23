@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item"><a class="link-primary" routerLink="/admin/users">Manage User</a></li>
+                <li class="list-group-item"><a class="link-primary" routerLink="/admin/products">Manage Products</a></li>
+                <li class="list-group-item"><a class="link-primary" routerLink="/admin/categories">Manage Categories</a></li>
+                <li class="list-group-item"><a class="link-primary" routerLink="/admin/vendors">Manage Vendors</a></li>
+            </ul>
+        </div>
+        
+        <div class="col-md-8 vendor-list">
+            <h4>Vendor List</h4>
+
+            <div class="text-right mb-4">
+                <button (click)="createVendor()" class="btn btn-primary" type="button">
+                    Create Vendor
+                </button>
+            </div>
+
+            <div style="height: 75vh; overflow-y: auto;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Vendor ID</th>
+                            <th>Vendor Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vendor of vendors" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
+                            <td>{{vendor.vendorID}}</td>
+                            <td>{{vendor.vendorname}}</td>
+                            <td>{{vendor.address}}</td>
+                            <td>{{vendor.phone}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- The Modal -->
+    <div class="modal" [ngClass]="{'modal-open-c show': isModalOpen}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Create/Update Vendor</h4>
+                    <button type="button" (click)="closemodal()" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" style="height: 60vh; overflow-y: auto;">
+                    <div class="form-group">
+                        <label>Vendor Name:</label>
+                        <input type="text" class="form-control" required [(ngModel)]="modalVendor.name" placeholder="Category Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input type="text" class="form-control" required [(ngModel)]="modalVendor.address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="text" class="form-control" required [(ngModel)]="modalVendor.phone" placeholder="Phone">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" (click)="saveOrUpdateVendor()" class="btn btn-primary"
+                        data-dismiss="modal">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop show" *ngIf="isModalOpen"></div>
+    </div>
+</div>

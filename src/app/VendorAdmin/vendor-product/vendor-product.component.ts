@@ -48,16 +48,17 @@ export class VendorProductComponent implements OnInit {
       }
     );
   }
-  openmodal(): void {
-
-    this.isModalOpen = true;
+  openmodal():void{
+    
+    this.isModalOpen=true;
   }
 
 
-  closemodal(): void {
-
-    this.isModalOpen = false;
+  closemodal():void{
+    
+    this.isModalOpen=false;
   }
+  
   edit(item): void {
     let items = JSON.stringify(item);
     this.modalProduct = JSON.parse(items);
@@ -73,7 +74,6 @@ export class VendorProductComponent implements OnInit {
       categoryId: 0,
       categoryName: '',
       isActive: false
-
 
     }
     this.isModalOpen = true;

@@ -17,4 +17,28 @@ export class SysAdminService {
     private messengerService: MessengerService,
     private router: Router
   ) {}
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/categories`);
+  }
+
+  createCategory(data): Observable<any>{
+    return this.http.post<any>(`${environment.baseUrl}/categories`,data );
+  }
+
+  updateCategory(data): Observable<any>{
+    return this.http.put<any>(`${environment.baseUrl}/categories/${data.id}`,data );
+  }
+
+  getVendors(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/vendors`);
+  }
+
+  createVendor(data): Observable<any>{
+    return this.http.post<any>(`${environment.baseUrl}/vendors`,data );
+  }
+
+  updateVendor(data): Observable<any>{
+    return this.http.put<any>(`${environment.baseUrl}/vendors/${data.id}`,data );
+  }
 }

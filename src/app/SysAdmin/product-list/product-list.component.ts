@@ -37,7 +37,6 @@ export class ProductListComponent implements OnInit {
   }
 
   decline(item):void{
-
     this.service.deactivateProduct(item.id).subscribe(data=>{
       item.isActive=false;
     })
