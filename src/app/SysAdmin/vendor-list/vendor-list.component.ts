@@ -19,8 +19,8 @@ export class VendorListComponent implements OnInit {
     this.loadVendors();
 
     this.modalVendor = {
-      id: 0,
-      name: '',
+      vendorID: 0,
+      vendorname: '',
       address:'',
       phone:''
     }
@@ -36,8 +36,8 @@ export class VendorListComponent implements OnInit {
 
   createVendor(): void {
     this.modalVendor = {
-      id: 0,
-      name: '',
+      vendorID: 0,
+      vendorname: '',
       address:'',
       phone:''
     }
@@ -52,17 +52,16 @@ export class VendorListComponent implements OnInit {
   }
 
   saveOrUpdateVendor(): void {
-    if(this.modalVendor.id > 0){
+    if(this.modalVendor.vendorID > 0){
       let update_pro = {
-        "active": true,
-        //"id": this.modalCategory.id,
-        "name": this.modalVendor.name,
+        "vendorID": this.modalVendor.vendorID,
+        "vendorname": this.modalVendor.vendorname,
         "address": this.modalVendor.address,
         "phone": this.modalVendor.phone
       }
       this.vendor_service.updateVendor(update_pro).subscribe(
         data=> {
-        let old_obj = this.vendors.find(x=>x.id==data.id);
+        let old_obj = this.vendors.find(x=>x.vendorID==data.vendorID);
         let x = this.vendors.indexOf(old_obj);
         if(x>-1){
           this.vendors[x] = data;
@@ -71,9 +70,8 @@ export class VendorListComponent implements OnInit {
       });
     } else {
       let new_pro = {
-        "active": true,
         //"id": this.modalCategory.id,
-        "name": this.modalVendor.name,
+        "vendorname": this.modalVendor.vendorname,
         "address": this.modalVendor.address,
         "phone": this.modalVendor.phone
       }
@@ -86,6 +84,20 @@ export class VendorListComponent implements OnInit {
         console.log(error);
       })
     }
+  }
+
+  delete(item): void {
+    let items =JSON.stringify(item);
+    this.modalVendor=JSON.parse(items);
+    console.log(item);
+
+    this.vendor_service.deleteVendor(this.modalVendor).subscribe(()=> {
+      let old_obj = this.vendors.find(x=>x.vendorID==item.vendorID);
+      let x = this.vendors.indexOf(old_obj);
+      if(x>-1){
+        this.vendors.splice(x,1);
+      }
+    });
   }
 
   openmodal(): void {

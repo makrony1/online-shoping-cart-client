@@ -16,8 +16,8 @@ export interface CurrentUser {
 }
 
 export interface VendorUser {
-  id: number;
-  name: string;
+  vendorID: number;
+  vendorname: string;
   address: string;
   phone: string;
 }

@@ -30,11 +30,24 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vendor of vendors" class="col-sm-4 col-md-4 col-lg-4 col-xl-4 mt-4">
-                            <td>{{vendor.id}}</td>
-                            <td>{{vendor.name}}</td>
+                            <td>{{vendor.vendorID}}</td>
+                            <td>{{vendor.vendorname}}</td>
                             <td>{{vendor.address}}</td>
                             <td>{{vendor.phone}}</td>
-                            
+                            <td *ngIf="true">
+                                <span>
+                                  <button (click)="edit(vendor)" class="btn btn-warning" type="button">
+                                    Edit
+                                  </button>
+                                </span>
+                            </td>
+                            <td *ngIf="true">
+                                <span>
+                                  <button (click)="delete(vendor)" class="btn btn-danger" type="button">
+                                    Delete
+                                  </button>
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,7 +71,7 @@
                 <div class="modal-body" style="height: 60vh; overflow-y: auto;">
                     <div class="form-group">
                         <label>Vendor Name:</label>
-                        <input type="text" class="form-control" required [(ngModel)]="modalVendor.name" placeholder="Category Name">
+                        <input type="text" class="form-control" required [(ngModel)]="modalVendor.vendorname" placeholder="Vendor Name">
                     </div>
                     <div class="form-group">
                         <label>Address:</label>

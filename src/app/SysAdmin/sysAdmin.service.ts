@@ -30,6 +30,10 @@ export class SysAdminService {
     return this.http.put<any>(`${environment.baseUrl}/categories/${data.id}`,data );
   }
 
+  deleteCategory(data): Observable<any>{
+    return this.http.delete<any>(`${environment.baseUrl}/categories/${data.id}`);
+  }
+
   getVendors(): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/vendors`);
   }
@@ -39,6 +43,10 @@ export class SysAdminService {
   }
 
   updateVendor(data): Observable<any>{
-    return this.http.put<any>(`${environment.baseUrl}/vendors/${data.id}`,data );
+    return this.http.put<any>(`${environment.baseUrl}/vendors/${data.vendorID}`,data );
+  }
+
+  deleteVendor(data): Observable<any>{
+    return this.http.delete<any>(`${environment.baseUrl}/vendors/${data.vendorID}`);
   }
 }
