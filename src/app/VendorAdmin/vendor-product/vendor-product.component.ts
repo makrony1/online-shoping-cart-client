@@ -16,6 +16,7 @@ export class VendorProductComponent implements OnInit {
   categories: Category[];
 
   ngOnInit(): void {
+    this.products =[];
     this.loadVendorProducts();
     console.log("here is vendor products");
     this.loadCategories();
@@ -58,7 +59,7 @@ export class VendorProductComponent implements OnInit {
     
     this.isModalOpen=false;
   }
-  
+
   edit(item): void {
     let items = JSON.stringify(item);
     this.modalProduct = JSON.parse(items);
