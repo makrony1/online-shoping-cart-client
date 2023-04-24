@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class CartService {
-  cart_item_key: "cart_item_local";
+  cart_item_key= "cart_item_local";
 
   constructor(private http: HttpClient) {}
 
@@ -45,4 +45,12 @@ export class CartService {
     }
   }
 
+  placeOrder(data):any{
+    return this.http.post(`${environment.baseUrl}/orders/placeOrder`, data)
+  }
+
+  clearcart(): any{
+    localStorage.setItem(this.cart_item_key, JSON.stringify([]));
+    
+  }
 }

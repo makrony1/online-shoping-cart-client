@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
-  cart_item_key: "cart_item_local";
+  cart_item_key= "cart_item_local";
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any> {
