@@ -1,7 +1,7 @@
 <div class="card border">
   <div class="card-body" (click)="getItem(product)">
     <h5 class="card-title" >{{product.name}}</h5>
-    <img width="80%" src="{{getImage(product)}}" />
+    <img width="80%" height="200px" src="{{getImage(product)}}" />
     <p>Price: ${{product.sellingPrice}}</p>
     <p>Category: {{product.categoryName}}</p>
   </div>
