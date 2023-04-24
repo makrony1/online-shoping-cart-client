@@ -42,4 +42,15 @@ export class ProductListComponent implements OnInit {
     })
   }
 
+  getImage(item):string{
+    if(item.image == null || item.image== undefined){
+      return 'https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$';
+    }
+
+    if(item.image.length >10){
+      return item.image;
+    }
+
+    return 'https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$';
+  }
 }
