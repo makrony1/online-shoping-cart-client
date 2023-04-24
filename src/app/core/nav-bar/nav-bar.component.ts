@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountService } from '../../account/account.service';
 import { CurrentUser } from '../../shared/models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { LoggerService } from 'src/app/shared/service/logger.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,8 +16,10 @@ export class NavBarComponent implements OnInit {
   isAdmin: boolean=false;
   isVendor: boolean=false;
   currentUserRoles:any[]=[];
+  searchText='';
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,private router: Router,
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.currentUser$ = this.accountService.currentUser$;
@@ -44,5 +49,10 @@ export class NavBarComponent implements OnInit {
 
   logout(): void {
     this.accountService.logout();
+  }
+
+  search():void{
+    console.log(this.searchText);
+    this.router.navigateByUrl("/product?search="+this.searchText);
   }
 }

@@ -47,6 +47,16 @@ export class AccountService {
     );
   }
 
+  createUser(values: any): Observable<void> {
+    return this.http.post(`${environment.baseUrl}/api/auth/signup`, values).pipe(
+      map((user: CurrentUser) => {
+        if (user) {
+          console.log('Register sucess');
+        }
+      })
+    );
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('cartItems');
@@ -77,4 +87,9 @@ export class AccountService {
     //   })
     // );
   }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/users`);
+  }
+
 }

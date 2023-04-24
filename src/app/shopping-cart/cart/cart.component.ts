@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    alert("checkout")
+    //alert("checkout")
     this.isCheckoutDone = true;
     this.shippingAddress= {
       Address:"",

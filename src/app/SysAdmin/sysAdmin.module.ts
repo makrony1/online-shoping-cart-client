@@ -7,11 +7,16 @@ import { SysAdminComponent } from './sys-admin.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
+
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [UsersComponent, SysAdminComponent, ProductListComponent, VendorListComponent, CategoryManageComponent],
-  imports: [CommonModule, SysAdminRoutingModule, SharedModule, FormsModule, ButtonsModule]
+  imports: [ SysAdminRoutingModule,
+    
+    CommonModule,
+    SharedModule,
+    FormsModule,]
 })
 export class SysAdminModule {}

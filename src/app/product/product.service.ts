@@ -13,6 +13,10 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/products/activeProducts`);
+  }
+
+  getAllProducts(): Observable<any> {
     return this.http.get<any>(`${environment.productUrl}`);
   }
 
@@ -41,6 +45,14 @@ export class ProductService {
     localStorage.setItem(this.cart_item_key, JSON.stringify(cartItems));
 
     return cartItems;
+  }
+
+  activateProduct(id):any{
+    return this.http.put(`${environment.baseUrl}/products/activateProduct/${id}`, null);
+  }
+
+  deactivateProduct(id):any{
+    return this.http.put(`${environment.baseUrl}/products/deactivateProduct/${id}`, null);
   }
 
 }
