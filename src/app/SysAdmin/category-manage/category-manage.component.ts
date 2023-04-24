@@ -44,12 +44,12 @@ export class CategoryManageComponent implements OnInit {
 
   saveOrUpdateCategory(): void {
     if(this.modalCategory.id > 0){
-      let update_pro = {
+      let update_cat = {
         "active": true,
         "id": this.modalCategory.id,
         "name": this.modalCategory.name
       }
-      this.category_service.updateCategory(update_pro).subscribe(
+      this.category_service.updateCategory(update_cat).subscribe(
         data=> {
         let old_obj = this.categories.find(x=>x.id==data.id);
         let x = this.categories.indexOf(old_obj);
@@ -59,13 +59,13 @@ export class CategoryManageComponent implements OnInit {
         this.isModalOpen = false;
       });
     } else {
-      let new_pro = {
+      let new_cat = {
         "active": true,
         //"id": this.modalCategory.id,
         "name": this.modalCategory.name
       }
 
-      this.category_service.createCategory(new_pro).subscribe(data=>{
+      this.category_service.createCategory(new_cat).subscribe(data=>{
         this.categories.push(data);
         this.isModalOpen = false;
       },error=>{
@@ -80,6 +80,20 @@ export class CategoryManageComponent implements OnInit {
     this.modalCategory=JSON.parse(items);
     this.isModalOpen=true;
     console.log(item);
+  }
+
+  delete(item): void {
+    let items =JSON.stringify(item);
+    this.modalCategory=JSON.parse(items);
+    console.log(item);
+
+    this.category_service.deleteCategory(this.modalCategory).subscribe(()=> {
+      let old_obj = this.categories.find(x=>x.id==item.id);
+      let x = this.categories.indexOf(old_obj);
+      if(x>-1){
+        this.categories.splice(x,1);
+      }
+    });
   }
 
   openmodal(): void {
