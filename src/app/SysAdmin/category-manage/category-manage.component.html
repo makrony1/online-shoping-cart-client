@@ -38,6 +38,13 @@
                                   </button>
                                 </span>
                             </td>
+                            <td *ngIf="true">
+                                <span>
+                                  <button (click)="delete(category)" class="btn btn-danger" type="button">
+                                    Delete
+                                  </button>
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
