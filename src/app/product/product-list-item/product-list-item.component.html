@@ -1,7 +1,7 @@
 <div class="card border">
   <div class="card-body" (click)="getItem(product)">
     <h5 class="card-title" >{{product.name}}</h5>
-    <img width="80%" src="https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0-Green/FLRC-214-R0-Green-01-PDP-GALLERY-1600x1200.jpg?$product-details-jpg$" />
+    <img width="80%" src="{{getImage(product)}}" />
     <p>Price: ${{product.sellingPrice}}</p>
     <p>Category: {{product.categoryName}}</p>
   </div>
