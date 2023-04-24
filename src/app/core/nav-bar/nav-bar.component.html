@@ -2,6 +2,12 @@
   <a class="mr-md-auto navbar-brand" routerLink="/">
     <img alt="" height="50" loading="lazy" src="https://resources.easystore.co/website/images/logo/png/easystore-logo-horizontal.png">
   </a>
+  <div class="input-group" style="width: 40%;">
+    <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Search">
+    <div class="input-group-append">
+      <button class="btn btn-success" (click)="search()">Search</button>
+    </div>
+  </div>
   <nav>
     <ng-container *ngIf="!isLogedIn">
       <a class="m-1 btn btn-outline-dark" routerLink="/account/register">Register</a>
