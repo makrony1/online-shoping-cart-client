@@ -17,16 +17,19 @@ export class NavBarComponent implements OnInit {
   isVendor: boolean=false;
   currentUserRoles:any[]=[];
   searchText='';
+  username = '';
 
   constructor(private accountService: AccountService,private router: Router,
     private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.username="";
     this.currentUser$ = this.accountService.currentUser$;
     this.currentUser$.subscribe(data=>{
 
       if(data!= null){
         this.isLogedIn=true;
+        this.username = data.username;
         if(data.roles!= null || data.roles!= undefined){
           this.isAdmin= data.roles.find(x=>x=='ROLE_ADMIN')!= null;
           this.isVendor= data.roles.find(x=>x=='ROLE_VENDOR')!= null;
