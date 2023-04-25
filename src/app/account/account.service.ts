@@ -39,6 +39,7 @@ export class AccountService {
     return this.http.post(`${environment.baseUrl}/api/auth/signin`, values).pipe(
       map((user: any) => {
         if (user) {
+          localStorage.clear();
           localStorage.setItem('token', user.accessToken);
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);

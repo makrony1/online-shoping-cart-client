@@ -13,6 +13,7 @@ export interface CurrentUser {
   email: string;
   accessToken: string;
   roles: string[];
+  id:number;
 }
 
 export interface VendorUser {

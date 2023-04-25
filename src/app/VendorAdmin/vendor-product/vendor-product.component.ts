@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Product } from 'src/app/shared/models/product';
 import { VendorAdminService } from '../vendorAdmin.service';
+import { CurrentUser } from 'src/app/shared/models/user';
+import { Observable } from 'rxjs';
+import { AccountService } from 'src/app/account/account.service';
 
 @Component({
   selector: 'app-vendor-product',
@@ -9,11 +12,13 @@ import { VendorAdminService } from '../vendorAdmin.service';
 })
 export class VendorProductComponent implements OnInit {
 
-  constructor(private service: VendorAdminService) { }
+  constructor(private service: VendorAdminService, private accountService: AccountService) { }
   products: Product[];
   isModalOpen = false;
   modalProduct: Product;
   categories: Category[];
+  currentUser$: Observable<CurrentUser>;
+  userId=0;
 
   getImage(item):string{
     if(item.image == null || item.image== undefined){
@@ -28,9 +33,10 @@ export class VendorProductComponent implements OnInit {
   }
   ngOnInit(): void {
     this.products =[];
-    this.loadVendorProducts();
-    console.log("here is vendor products");
     this.loadCategories();
+
+
+
     this.modalProduct = {
       actualPrice: 0,
       id: 0,
@@ -43,6 +49,19 @@ export class VendorProductComponent implements OnInit {
       categoryName: ""
 
     }
+
+
+    this.currentUser$ = this.accountService.currentUser$;
+    this.currentUser$.subscribe(data=>{
+
+      if(data!= null){
+        this.loadVendorProducts();
+        this.userId = data.id;
+      }
+      console.log(data);
+      
+    })
+
   }
 
   loadCategories(): void {
@@ -55,7 +74,10 @@ export class VendorProductComponent implements OnInit {
     this.service.getVendorProducts().subscribe(
       (data) => {
 
-        this.products = data;
+        console.log(this.userId);
+        console.log(data)
+        this.products = data.filter(p=>p.userId==this.userId)
+        //this.products = data;
         console.log(this.products);
       }
     );
