@@ -5,6 +5,8 @@ import { AccountService } from '../account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from '../../shared/service/logger.service';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { Observable } from 'rxjs';
+import { CurrentUser } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   returnUrl: string;
   isLoading=false;
+  currentUser$: Observable<CurrentUser>;
 
 
   constructor(
@@ -55,6 +58,27 @@ export class LoginComponent implements OnInit {
     this.service.login(this.form.value).subscribe(
       () => {
         this.isLoading=false;
+
+        this.currentUser$ = this.service.currentUser$;
+    this.currentUser$.subscribe(user=>{
+      // if(user.roles!= null || user.roles!= undefined){
+      //     let isadmin = user.roles.find(x=>x=='ROLE_ADMIN')!= null;
+      //     let isvendor = user.roles.find(x=>x=='ROLE_VENDOR')!= null;
+
+      //     if(isadmin!= null || isadmin != undefined){
+      //       this.router.navigateByUrl("/admin");
+      //     }
+
+      //     if(isvendor!= null || isvendor != undefined){
+      //       this.router.navigateByUrl("/vendor");
+      //     }
+
+      //   }
+
+    })
+        
+
+
         this.router.navigateByUrl(this.returnUrl);
       },
       (error) => {

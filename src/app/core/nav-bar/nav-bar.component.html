@@ -18,9 +18,9 @@
         <app-cart-item-counter></app-cart-item-counter>
       </a>
       <a (click)="logout()" *ngIf="isLogedIn" class="m-1 btn btn-outline-dark" routerLink="/">Logout</a>
-      <a class="m-1 btn btn-outline-dark" *ngIf="isAdmin" routerLink="/admin">SysAdmin</a>
-      <a class="m-1 btn btn-outline-dark" *ngIf="isVendor" routerLink="/vendor">Vendor</a>
-      <a class="m-1 btn btn-outline-dark" *ngIf="isVendor">Welcome {{username}}!!!</a>
+      <a class="m-1 btn btn-outline-dark" *ngIf="isAdmin" routerLink="/admin">Manage Activity</a>
+      <a class="m-1 btn btn-outline-dark" *ngIf="isVendor" routerLink="/vendor">Manage Activity</a>
+      <a class="m-1 btn btn-outline-dark" *ngIf="isLogedIn">Welcome {{username}}!!!</a>
 
     </ng-container>
 
